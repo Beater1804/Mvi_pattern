@@ -13,6 +13,8 @@ pluginGoogleDaggerHiltAndroid = "2.48.1"
 googleDaggerHiltAndroid = "2.48.1"
 googleDaggerHiltExt = "1.1.0"
 appcompat = "1.6.1"
+material = "1.11.0"
+lifecycle-viewmodel-ktx = "2.6.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,6 +36,8 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "googl
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "googleDaggerHiltAndroid" }
 hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "googleDaggerHiltExt" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

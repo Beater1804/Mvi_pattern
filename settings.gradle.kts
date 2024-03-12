@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MVI"
 include(":app")
- 
+include(":mvi_pattern")
