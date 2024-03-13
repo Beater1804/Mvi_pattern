@@ -30,7 +30,7 @@ abstract class BaseMVIViewModel<I : com.example.mvi.mvi_basic.BaseMVIContract.MV
 
     protected abstract val reducer: Reducer<S, I>
 
-    private val longRunningJobs: HashMap<String, Job> = hashMapOf()
+//    private val longRunningJobs: HashMap<String, Job> = hashMapOf()
 
     init {
         subscribeToIntents()
@@ -58,33 +58,33 @@ abstract class BaseMVIViewModel<I : com.example.mvi.mvi_basic.BaseMVIContract.MV
         setState { newState }
     }
 
-    fun observeFlow(
-        taskId: String,
-        isUnique: Boolean = true,
-        taskStartedByIntent: suspend () -> Unit
-    ) {
-        when {
-            taskId in longRunningJobs.keys &&
-                    !(longRunningJobs[taskId]?.isCompleted ?: true) &&
-                    isUnique -> {
-                Log.d("CoroutinesViewModel", "Job for intent already working.. Skip execution")
-                return
-            }
-            !isUnique -> {
-                if (taskId in longRunningJobs.keys) longRunningJobs[taskId]?.cancel()
-            }
-        }
-        val task = viewModelScope.launch {
-            taskStartedByIntent()
-        }
-        longRunningJobs[taskId] = task
-    }
-
-    fun cancelFlow(taskId: String) {
-        if (taskId in longRunningJobs.keys && longRunningJobs[taskId]?.isActive == true) {
-            longRunningJobs[taskId]?.cancel()
-        }
-    }
+//    fun observeFlow(
+//        taskId: String,
+//        isUnique: Boolean = true,
+//        taskStartedByIntent: suspend () -> Unit
+//    ) {
+//        when {
+//            taskId in longRunningJobs.keys &&
+//                    !(longRunningJobs[taskId]?.isCompleted ?: true) &&
+//                    isUnique -> {
+//                Log.d("CoroutinesViewModel", "Job for intent already working.. Skip execution")
+//                return
+//            }
+//            !isUnique -> {
+//                if (taskId in longRunningJobs.keys) longRunningJobs[taskId]?.cancel()
+//            }
+//        }
+//        val task = viewModelScope.launch {
+//            taskStartedByIntent()
+//        }
+//        longRunningJobs[taskId] = task
+//    }
+//
+//    fun cancelFlow(taskId: String) {
+//        if (taskId in longRunningJobs.keys && longRunningJobs[taskId]?.isActive == true) {
+//            longRunningJobs[taskId]?.cancel()
+//        }
+//    }
 
     private fun subscribeToIntents() {
         viewModelScope.launch {
